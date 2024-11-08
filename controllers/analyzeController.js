@@ -1,7 +1,7 @@
 const OpenAI = require("openai");
 const dotenv = require("dotenv");
 const path = require("path");
-const puppeteer = require("puppeteer");
+// const puppeteer = require("puppeteer");
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 const apiKey = process.env.OPENAI_API_KEY;
@@ -20,26 +20,26 @@ exports.captureScreenshot = async (req, res) => {
     if (!url) {
       return res.status(400).json({ error: "URL is required" });
     }
-    console.log("Capturing screenshot for URL:", url);
-    const browser = await puppeteer.launch({
-      headless: "new",
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
-    });
-    console.log("Capturing screenshot for browser:", browser);
-    const page = await browser.newPage();
-    await page.setViewport({ width: 1920, height: 1080 });
-    await page.goto(url, { waitUntil: "networkidle0" });
+    // console.log("Capturing screenshot for URL:", url);
+    // const browser = await puppeteer.launch({
+    //   headless: "new",
+    //   args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    // });
+    // console.log("Capturing screenshot for browser:", browser);
+    // const page = await browser.newPage();
+    // await page.setViewport({ width: 1920, height: 1080 });
+    // await page.goto(url, { waitUntil: "networkidle0" });
 
-    const screenshot = await page.screenshot({
-      encoding: "base64",
-      fullPage: true,
-    });
-    console.log("Capturing screenshot for page:");
-    await browser.close();
+    // const screenshot = await page.screenshot({
+    //   encoding: "base64",
+    //   fullPage: true,
+    // });
+    // console.log("Capturing screenshot for page:");
+    // await browser.close();
 
     res.json({
       success: true,
-      screenshot: screenshot,
+      // screenshot: screenshot,
     });
   } catch (error) {
     console.error("Screenshot error:", error);
